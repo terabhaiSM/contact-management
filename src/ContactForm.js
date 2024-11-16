@@ -20,7 +20,7 @@ const ContactForm = ({ fetchContacts }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5002/contacts", formData);
+      await axios.post(`${process.env.REACT_APP_URL}/contacts`, formData);
       setFormData({
         firstName: "",
         lastName: "",

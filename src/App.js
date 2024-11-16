@@ -9,7 +9,7 @@ const App = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get("http://localhost:5002/contacts");
+      const response = await axios.get(`${process.env.REACT_APP_URL}/contacts`);
       setContacts(response.data);
     } catch (error) {
       console.error("Error fetching contacts", error);
@@ -22,7 +22,7 @@ const App = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5002/contacts/${id}`);
+      await axios.delete(`${process.env.REACT_APP_URL}/contacts/${id}`);
       fetchContacts();
     } catch (error) {
       console.error("Error deleting contact", error);

@@ -44,7 +44,7 @@ const ContactsTable = ({ contacts, fetchContacts }) => {
     try {
         const id = currentContact._id;
         console.log(id);
-      await axios.put(`http://localhost:5002/contacts/${id}`, currentContact);
+      await axios.put(`${process.env.REACT_APP_URL}/contacts/${id}`, currentContact);
       fetchContacts(); // Refresh the list after update
       setEditDialogOpen(false);
     } catch (error) {
@@ -54,7 +54,7 @@ const ContactsTable = ({ contacts, fetchContacts }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5002/contacts/${id}`);
+      await axios.delete(`${process.env.REACT_APP_URL}/contacts/${id}`);
       fetchContacts(); // Refresh the list after delete
     } catch (error) {
       console.error("Error deleting contact:", error);

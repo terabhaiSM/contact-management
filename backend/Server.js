@@ -2,11 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://mradulsingh:mradulsingh@cluster1.t8prj2e.mongodb.net/contact-management", {
+mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/contact-management" , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -78,6 +79,6 @@ app.delete("/contacts/:id", async (req, res) => {
   }
 });
 
-app.listen(5002, () => {
-  console.log("Server running on http://localhost:5002");
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on ${process.env.PORT}`);
 });
