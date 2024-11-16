@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=${PORT}
+    env_file:
+      - .env

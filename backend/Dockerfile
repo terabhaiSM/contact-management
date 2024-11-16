@@ -1,8 +1,8 @@
-# Base image for Node.js
-FROM node:18
+# Base image
+FROM node:18-alpine
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
@@ -10,11 +10,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the application code
+# Copy the entire project
 COPY . .
 
-# Expose the backend port
-EXPOSE 5000
+# Set the correct working directory for server
+WORKDIR /app/backend
 
-# Start the backend server
-CMD ["npm", "start"]
+# Expose the application port
+EXPOSE 5002
+
+# Start the application
+CMD ["node", "server.js"]
